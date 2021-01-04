@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from 'react-router-dom'
+import {
+  FirebaseAppProvider,
+} from 'reactfire'
+import { Container } from '@material-ui/core'
+
+import Home from 'Home'
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyCbskDUoHgwlR7ojxFEjgvFemgZOvUIqwE',
+  authDomain: 'trading-quick-view.firebaseapp.com',
+  projectId: 'trading-quick-view',
+  storageBucket: 'trading-quick-view.appspot.com',
+  messagingSenderId: '315619587442',
+  appId: '1:315619587442:web:599998da2d6394a897d9eb',
+  measurementId: 'G-0CX17K82PQ',
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+      <Container maxWidth="md">
+        <Router>
+          <Switch>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </Container>
+    </FirebaseAppProvider>
+  )
 }
 
-export default App;
+export default App
